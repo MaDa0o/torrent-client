@@ -1,0 +1,9 @@
+Initial:
+https://allenkim67.github.io/programming/2016/05/04/how-to-make-your-own-bittorrent-client.html
+https://wiki.theory.org/index.php/BitTorrentSpecification
+http://www.bittorrent.org/beps/bep_0015.html
+http://www.morehawes.co.uk/the-bittorrent-protocol
+http://www.kristenwidman.com/blog/33/how-to-write-a-bittorrent-client-part-1/
+http://www.bittorrent.org/beps/bep_0020.html
+Tracker Protocol:
+http://www.bittorrent.org/beps/bep_0015.html
