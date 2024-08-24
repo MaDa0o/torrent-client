@@ -26,6 +26,7 @@ const getPeers = (torrent, callback) => {
   socket.on('message', response => {
     if (respType(response) === 'connect') {
       // 2. receive and parse connect response
+      console.log("connect response received")
       const connResp = parseConnResp(response);
       console.log("step 2");
 
@@ -43,6 +44,9 @@ const getPeers = (torrent, callback) => {
       callback(announceResp.peers);
       console.log("step 5");
 
+    }
+    else{
+      console.log("no response")
     }
   });
 };
@@ -117,7 +121,26 @@ function buildAnnounceReq(connId, torrent, port=6881) {
 }
 
 function parseAnnounceResp(resp) {
-  // ...
+  function group(iterable, groupSize) {
+    let groups = [];
+    for (let i = 0; i < iterable.length; i += groupSize) {
+      groups.push(iterable.slice(i, i + groupSize));
+    }
+    return groups;
+  }
+
+  return {
+    action: resp.readUInt32BE(0),
+    transactionId: resp.readUInt32BE(4),
+    leechers: resp.readUInt32BE(8),
+    seeders: resp.readUInt32BE(12),
+    peers: group(resp.slice(20), 6).map(address => {
+      return {
+        ip: address.slice(0, 4).join('.'),
+        port: address.readUInt16BE(4)
+      }
+    })
+  }
 }
 
 export default getPeers
