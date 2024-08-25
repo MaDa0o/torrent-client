@@ -2,11 +2,9 @@
 import * as fs from 'fs';
 import bencode from 'bencode';
 import * as tracker from "./tracker.js"
+import * as torrentParser from "./torrent-parser.js"
 
-const coded_torrent = fs.readFileSync('puppy.torrent');
-console.log(coded_torrent)
-const torrent = bencode.decode(coded_torrent,'utf8');
-console.log(torrent)
+const torrent = torrentParser.default.open("puppy.torrent");
 
 // console.log(typeof tracker.default);
 
