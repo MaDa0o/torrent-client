@@ -4,7 +4,7 @@ import bencode from 'bencode';
 import * as tracker from "./tracker.js"
 import * as torrentParser from "./torrent-parser.js"
 
-const torrent = torrentParser.default.open("puppy.torrent");
+const torrent = torrentParser.default.open("test_torrent_1.torrent");
 
 // console.log(typeof tracker.default);
 

@@ -55,11 +55,13 @@ function udpSend(socket, message, rawUrl, callback=()=>{}) {
   const url = urlParse(rawUrl);
   console.log(rawUrl)
   console.log(url);
-  socket.send(message, 0, message.length, url.port, url.host, callback);
+  socket.send(message, 0, message.length, url.port?url.port:6969, url.host, callback);
 }
 
 function respType(resp) {
-  // ..
+  const action = resp.readUInt32BE(0);
+  if (action === 0) return 'connect';
+  if (action === 1) return 'announce';
 }
 
 function buildConnReq() {
